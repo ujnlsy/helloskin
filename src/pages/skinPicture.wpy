@@ -1,0 +1,119 @@
+/**
+* Created by lsy on 2018/6/13.
+*/
+<style lang="less">
+  .skin-picture {
+    display: block;
+    width: 560rpx;
+  }
+  .picture-desc {
+    position: relative;
+    align-items: center;
+    line-height: 2;
+    padding: 24rpx 30rpx;
+    box-sizing:border-box;
+    font-size: 28rpx;
+    color: #333
+  }
+  .open-photo {
+    text-align: center;
+  }
+  .title {
+    text-align: center;
+  }
+
+  .q-image-wrap {
+    display: block;
+    width: 560rpx;
+    margin-bottom: 30rpx;
+  }
+
+  .q-image {
+    width: 100%;
+    height: 600rpx;
+  }
+
+  .q-image-remover {
+    color: #235caa;
+    font-size: 28rpx;
+  }
+</style>
+
+<template>
+    <view class="container">
+      <view class="skin-picture">
+        <view class="title">上传皮肤图片</view>
+        <view class="picture-desc">
+          <view>照片说明：</view>
+          <view>1. 如果你咨询的是面部皮肤问题，请上传脸部的高清图片，不要加美颜效果，尽肯能用手机后置摄像头拍摄，图片越清楚越能帮助判断皮肤问题所在。</view>
+          <view>2. 其他部位皮肤问题咨询如上标准上传图片。</view>
+        </view>
+
+        <view class="open-photo">
+          <wxc-button @click="chooseImage" type="info">上传图片</wxc-button>
+        </view>
+
+        <block wx:for="{{imageList}}" wx:key="*this">
+          <view class="q-image-wrap">
+            <!-- 图片缩略图  -->
+            <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+            <!-- 移除图片的按钮  -->
+            <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">删除</view>
+          </view>
+        </block>
+      </view>
+    </view>
+</template>
+
+<script>
+	import wepy from 'wepy'
+
+	export default class skinPicture extends wepy.page {
+    config = {
+      navigationBarTitleText: 'Hello Skin',
+      usingComponents: {
+        'wxc-button': '../packages/@minui/wxc-button/dist/index'
+      }
+    }
+
+		data = {
+			imageList: []
+    }
+
+		methods = {
+      // 选择照片
+      chooseImage () {
+        var that = this
+        wx.chooseImage({
+          count: 9,
+          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+          sourceType: ['album', 'camera'],
+          success: function (res) {
+          	that.imageList = res.tempFilePaths
+            that.$apply();
+          },
+          fail: function (res) {
+          	console.log("error")
+          },
+          complete: function (res) {
+            console.log("complete")
+          }
+        })
+      },
+      handleImagePreview(e) {
+        const idx = e.target.dataset.idx
+        const images = this.imageList
+        wx.previewImage({
+          current: images[idx],  //当前预览的图片
+          urls: images,  //所有要预览的图片
+        })
+      },
+      removeImage(e) {
+      	const idx = e.target.dataset.idx
+        this.imageList.splice(idx,1)
+        this.$apply()
+      }
+    }
+	}
+
+</script>

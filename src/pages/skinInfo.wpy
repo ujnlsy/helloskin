@@ -1,0 +1,58 @@
+<style lang="less">
+.btn-save{
+  margin: 30rpx;
+}
+</style>
+
+<template>
+  <view class="container">
+    <view>皮肤信息填写</view>
+    <skinType title="你遇到了什么皮肤问题" :items="skins"></skinType>
+
+    <skinDesc title="你当前的皮肤状况描述" placeholder="详细描述下你当前的皮肤情况，比如："></skinDesc>
+    <mainWant title="你的主要诉求" placeholder="你希望你的皮肤达到什么状态，比如：毛孔变小。。。"></mainWant>
+    <skinProduct title="近期使用过的产品" placeholder="近三个月使用过的护肤品、化妆品、皮肤药物"></skinProduct>
+    <navigator class="btn-save" url="../pages/skinPicture" open-type="navigate">
+      <wxc-button   type="info">保存</wxc-button>
+    </navigator>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import InputText from '../components/common/input-text'
+  import wepyCheckbox from '../components/common/wepy-checkbox'
+  import wepyTextarea from '../components/common/wepy-textarea'
+
+  export default class SkinInfo extends wepy.page {
+
+  	data = {
+  		skins: [
+        {value: 'dou', name: '痘痘痤疮'},
+        {value: 'meibai', name: '美白'},
+        {value: '1', name: '美白'},
+        {value: '2', name: '美白'},
+        {value: '3', name: '美白'},
+        {value: '4', name: '其他'}
+      ]
+    }
+
+    config = {
+      navigationBarTitleText: 'Hello Skin',
+      usingComponents: {
+        'wxc-button': '../packages/@minui/wxc-button/dist/index'
+      }
+    }
+
+    components = {
+      skinType: wepyCheckbox,
+      skinDesc: wepyTextarea,
+      mainWant: wepyTextarea,
+      skinProduct: wepyTextarea
+    }
+
+    methods = {
+
+    }
+  }
+</script>

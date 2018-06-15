@@ -1,0 +1,124 @@
+<style lang="less">
+  .live-place{
+    display: block;
+    width: 560rpx;
+  }
+  .live-place-combine {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    line-height: 1.4;
+    padding: 24rpx 30rpx;
+    box-sizing:border-box;
+    font-size: 28rpx;
+    color: #333
+  }
+  .live-place-label{
+    min-width: 163rpx;
+    height: 46rpx;
+    line-height: 46rpx;
+    color: #333
+  }
+  .live-place-text{
+    flex: 1;
+    height: 46rpx;
+    line-height: 46rpx;
+    color: #333
+  }
+
+
+  .btn-save{
+    margin: 30rpx;
+  }
+</style>
+
+<template>
+  <view class="container">
+    <view>基本信息填写</view>
+    <wxc-input type="text" title="姓名" placeholder="怎么称呼你呢？"></wxc-input>
+    <wxc-input type="number" title="年龄" placeholder="年龄辅助判断你当前状态"></wxc-input>
+    <genderInput title="性别" :items="gender" :value.sync="selectedGender"></genderInput>
+    <wxc-input type="number" title="体重" placeholder="用药量参考"></wxc-input>
+    <view class="live-place">
+      <view class="live-place-combine">
+        <view class="live-place-label">所在地区：</view>
+        <view class="live-place-text" @tap="openAddressPicker">{{province ? province.name : '省'}} - {{city ? city.name : '市' }}</view>
+        <citySelect @areaArray.user="areaPickerArray" :showArea.sync="showArea"></citySelect>
+      </view>
+    </view>
+    <navigator class="btn-save" url="/pages/skinInfo" open-type="navigate">
+      <wxc-button @click="saveInfo" type="info">保存，去咨询</wxc-button>
+    </navigator>
+
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import WepyRadio from '../components/common/wepy-radio'
+  import CitySelect from '../components/common/wepy-city-select'
+
+  export default class BaseInfo extends wepy.page {
+
+    config = {
+      navigationBarTitleText: 'Hello Skin',
+      usingComponents: {
+        'wxc-input': '../packages/@minui/wxc-input/dist/index',
+        'wxc-button': '../packages/@minui/wxc-button/dist/index'
+      }
+    }
+
+  	components = {
+      genderInput: WepyRadio,
+      citySelect: CitySelect
+    }
+
+    data = {
+  		nick: '',
+      age: '',
+      gender: [
+        {name: 'female', value: '女', checked: true},
+        {name: 'male', value: '男'}
+      ],
+      selectedGender: 'female',
+      //城市选择
+      province: '',
+      city: '',
+      area: '',
+      provinceCode: '',
+      cityCode: '',
+      areaCode: '',
+      showArea: false
+    }
+
+    methods = {
+      openAddressPicker() {
+        this.$invoke('citySelect', 'openAddressPicker');
+      },
+      areaPickerArray(province, city, area) {
+        this.province = province;
+        this.city = city;
+        this.area = area;
+
+        this.provinceCode = province.code;
+        this.cityCode = city.code;
+        this.areaCode = area.code;
+        this.$apply(); //在异步函数中更新数据的时候，必须手动调用$apply方法，才会触发脏数据检查流程的运行。
+      },
+      saveInfo() {
+      	console.log("save")
+      }
+    }
+
+    onShow() {
+      console.log("========editInfo==========");
+
+      this.province = { code: '120000', name: '天津市' };
+      this.city = { code: '120100', name: '天津市' };
+      this.area = { code: '120101', name: '和平区' };
+      this.$invoke('citySelect', 'setAddressPickerValue', this.province, this.city, this.area);
+
+
+    }
+  }
+</script>

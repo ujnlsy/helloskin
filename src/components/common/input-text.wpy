@@ -1,0 +1,35 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <view>
+    <view>{{title}}</view>
+    <view>
+      <input @input="bindKeyInput" placeholder="{{placeholder}}"/>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class InputText extends wepy.component {
+    props = {
+  		title: String,
+      placeholder: String,
+      value: {
+  			type: String,
+        default: 'null',
+        twoWay: true
+      }
+    }
+    methods = {
+    	bindKeyInput (e) {
+        this.value = e.detail.value
+        console.log(this.value)
+      }
+    }
+  }
+
+</script>
