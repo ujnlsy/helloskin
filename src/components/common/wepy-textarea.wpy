@@ -4,7 +4,7 @@
 <style lang="less">
   .textarea {
     display: block;
-    width: 560rpx;
+    width: 700rpx;
   }
   .textarea__combine {
     position: relative;
@@ -65,7 +65,7 @@
     /*flex: 1;*/
     /*height: 46rpx;*/
     /*min-height: 46rpx;*/
-    width: 498rpx;
+    width: 648rpx;
     line-height: 46rpx;
     font-size: 32rpx;
     margin-top:30rpx;

@@ -4,7 +4,7 @@
 <style lang="less">
   .checkbox {
     display: block;
-    width: 560rpx;
+    width: 700rpx;
   }
   .checkbox__combine {
     position: relative;

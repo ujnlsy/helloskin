@@ -1,0 +1,67 @@
+/**
+* Created by lsy on 2018/8/6.
+*/
+<style lang="less">
+  .self-introduction{
+    display: block;
+    width: 560rpx;
+  }
+  .title{
+    box-sizing:border-box;
+    padding: 24rpx 30rpx;
+  }
+  .descrption{
+    position: relative;
+    align-items: center;
+    line-height: 2;
+    padding: 24rpx 30rpx;
+    box-sizing:border-box;
+    font-size: 28rpx;
+    color: #333
+  }
+  .btn-save{
+    text-align: center;
+    margin: 20rpx;
+  }
+</style>
+
+<template>
+  <view class="container">
+    <view class="self-introduction">
+      <view class="title">问皮肤</view>
+      <view class="descrption">
+        <view>
+          欢迎关注我们的在线皮肤管理小程序【问皮肤】<br>
+
+          我是河北医科大学皮肤科研究生，致力于研究皮肤美容临床科学，
+          目前已为200余有不同程度皮肤问题的朋友提供过建议和解决方案。
+          如果你也有皮肤问题的困扰，不妨和我聊一聊。<br>
+
+          为了能给你提供更好的建议，首先需要你花5-10分钟描述一下你的皮肤状况和咨询问题。
+        </view>
+      </view>
+      <navigator class="btn-save" url="/pages/skinInfo" open-type="navigate">
+        <wxc-button @click="saveInfo" type="info">去咨询</wxc-button>
+      </navigator>
+    </view>
+  </view>
+
+</template>
+
+<script>
+	import wepy from 'wepy'
+
+	export default class selfIntroduction extends wepy.page {
+    config = {
+      navigationBarTitleText: 'Hello Skin',
+      usingComponents: {
+        'wxc-button': '../packages/@minui/wxc-button/dist/index'
+      }
+    }
+
+		methods = {
+
+    }
+	}
+
+</script>

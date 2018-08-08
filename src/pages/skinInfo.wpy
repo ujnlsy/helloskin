@@ -1,4 +1,45 @@
 <style lang="less">
+  .statement {
+    display: block;
+    width: 650rpx;
+    font-size: 28rpx;
+    color: #333;
+    padding-bottom: 30rpx;
+    margin-bottom: 10rpx;
+    border-bottom: 1rpx solid #e5e5e5;
+  }
+
+  .uploadimg{
+    display: block;
+    width: 700rpx;
+    font-size: 28rpx;
+    color: #333;
+    padding: 24rpx 30rpx;
+    box-sizing:border-box;
+  }
+
+  .uploadimg .img image{
+    margin-top: 20rpx;
+    width: 150rpx;
+    height: 150rpx;
+  }
+
+  .q-image-wrap {
+    display: block;
+    width: 560rpx;
+    margin-bottom: 30rpx;
+  }
+
+  .q-image {
+    width: 100%;
+    height: 600rpx;
+  }
+
+  .q-image-remover {
+    color: #235caa;
+    font-size: 28rpx;
+  }
+
 .btn-save{
   margin: 30rpx;
 }
@@ -6,12 +47,30 @@
 
 <template>
   <view class="container">
-    <view>皮肤信息填写</view>
-    <skinType title="你遇到了什么皮肤问题" :items="skins"></skinType>
+    <view class="statement">
+      你提交的所有信息都受到隐私保护，希望你能真实描述自己的皮肤情况以获得更适合你的皮肤建议。
+    </view>
+    <skinType title="1. 你遇到了什么皮肤问题" :items="skins"></skinType>
 
-    <skinDesc title="你当前的皮肤状况描述" placeholder="详细描述下你当前的皮肤情况，比如："></skinDesc>
-    <mainWant title="你的主要诉求" placeholder="你希望你的皮肤达到什么状态，比如：毛孔变小。。。"></mainWant>
-    <skinProduct title="近期使用过的产品" placeholder="近三个月使用过的护肤品、化妆品、皮肤药物"></skinProduct>
+    <mainWant title="2. 你的主要诉求" placeholder="你希望你的皮肤达到什么状态，比如：毛孔变小。。。"></mainWant>
+    <skinDesc title="3. 你的皮肤状况描述？（从第一次出现皮肤问题开始，用过、吃过什么药或护肤品，做过什么治疗，有什么改善或加重，像讲故事一样仔细讲述。）" placeholder="详细描述下你当前的皮肤情况，比如："></skinDesc>
+    <skinStep title="4. 日常的护肤步骤（如，一天用几次洗面奶，霜乳精华的使用顺序，几天敷一次面膜）" placeholder="例如：每天洗两次脸，早上不用洗面奶，晚上用。早上出门拍个水，晚上护肤先擦乳，再用眼霜精华"></skinStep>
+    <skinProduct title="5. 近期及目前使用过的护肤品或化妆品（具体到什么品牌的什么东西，我能够了解到该产品的成分，判断是否适合你）" placeholder="例如：悦诗风吟绿茶精萃保湿洁面乳，sk2神仙水，贝德玛洁肤液等"></skinProduct>
+
+    <view class="uploadimg">
+      <view class="img-label">6. 上传问题皮肤高清图片，后置拍摄，不加美颜，不打马赛克（图片反应皮肤状态越清楚，越能准确判断皮肤问题）</view>
+      <view wx:if="{{hideimg}}" class="img"  @tap="chooseImage">
+        <image src="../images/icons/uploadimg.svg"></image>
+      </view>
+      <block wx:for="{{imageList}}" wx:key="*this">
+        <view class="q-image-wrap">
+          <!-- 图片缩略图  -->
+          <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+          <!-- 移除图片的按钮  -->
+          <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">删除</view>
+        </view>
+      </block>
+    </view>
     <navigator class="btn-save" url="../pages/skinPicture" open-type="navigate">
       <wxc-button   type="info">保存</wxc-button>
     </navigator>
@@ -34,11 +93,13 @@
         {value: '2', name: '美白'},
         {value: '3', name: '美白'},
         {value: '4', name: '其他'}
-      ]
+      ],
+      imageList: [],
+      hideimg: true
     }
 
     config = {
-      navigationBarTitleText: 'Hello Skin',
+      navigationBarTitleText: '皮肤问题描述',
       usingComponents: {
         'wxc-button': '../packages/@minui/wxc-button/dist/index'
       }
@@ -48,11 +109,52 @@
       skinType: wepyCheckbox,
       skinDesc: wepyTextarea,
       mainWant: wepyTextarea,
+      skinStep: wepyTextarea,
       skinProduct: wepyTextarea
+
     }
 
     methods = {
-
+      // 选择照片
+      chooseImage () {
+      	console.log("imgclick")
+        var that = this
+        wx.chooseImage({
+          count: 9,
+          sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+          sourceType: ['album', 'camera'],
+          success: function (res) {
+            that.imageList = res.tempFilePaths
+            that.hideimg = false
+            that.$apply();
+          },
+          fail: function (res) {
+            console.log("error")
+          },
+          complete: function (res) {
+            console.log("complete")
+          }
+        })
+      },
+      handleImagePreview(e) {
+        const idx = e.target.dataset.idx
+        const images = this.imageList
+        wx.previewImage({
+          current: images[idx],  //当前预览的图片
+          urls: images,  //所有要预览的图片
+        })
+      },
+      removeImage(e) {
+        const idx = e.target.dataset.idx
+        this.imageList.splice(idx,1)
+        if (this.imageList.length > 0)
+        {
+        	this.hideimg = false
+        } else {
+        	this.hideimg = true
+        }
+        this.$apply()
+      }
     }
   }
 </script>
