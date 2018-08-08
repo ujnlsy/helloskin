@@ -1,4 +1,13 @@
 <style lang="less">
+  .statement {
+    display: block;
+    width: 650rpx;
+    font-size: 28rpx;
+    color: #333;
+    padding-bottom: 30rpx;
+    margin-bottom: 10rpx;
+    border-bottom: 1rpx solid #e5e5e5;
+  }
   .live-place{
     display: block;
     width: 560rpx;
@@ -34,7 +43,9 @@
 
 <template>
   <view class="container">
-    <view>基本信息填写</view>
+    <view class="statement">
+      以下信息帮助我了解你当前所在基础状态，作为辅助判断皮肤问题的基本要素。
+    </view>
     <wxc-input type="text" title="姓名" placeholder="怎么称呼你呢？"></wxc-input>
     <wxc-input type="number" title="年龄" placeholder="年龄辅助判断你当前状态"></wxc-input>
     <genderInput title="性别" :items="gender" :value.sync="selectedGender"></genderInput>
@@ -47,7 +58,7 @@
       </view>
     </view>
     <navigator class="btn-save" url="/pages/skinInfo" open-type="navigate">
-      <wxc-button @click="saveInfo" type="info">保存，去咨询</wxc-button>
+      <wxc-button @click="saveInfo" type="info">提交</wxc-button>
     </navigator>
 
   </view>
@@ -61,7 +72,7 @@
   export default class BaseInfo extends wepy.page {
 
     config = {
-      navigationBarTitleText: 'Hello Skin',
+      navigationBarTitleText: '基础信息填写',
       usingComponents: {
         'wxc-input': '../packages/@minui/wxc-input/dist/index',
         'wxc-button': '../packages/@minui/wxc-button/dist/index'

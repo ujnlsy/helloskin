@@ -71,8 +71,8 @@
         </view>
       </block>
     </view>
-    <navigator class="btn-save" url="../pages/skinPicture" open-type="navigate">
-      <wxc-button   type="info">保存</wxc-button>
+    <navigator class="btn-save" url="../pages/baseinfo" open-type="navigate">
+      <wxc-button   type="info">保存，下一步</wxc-button>
     </navigator>
   </view>
 </template>

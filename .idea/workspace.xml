@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1257a474-fbc7-4f9e-88bc-4a7fb1c851ea" name="Default" comment="api文档">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/images/icons/uploadimg.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pages/selfIntroduction.wpy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="1257a474-fbc7-4f9e-88bc-4a7fb1c851ea" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.wpy" afterPath="$PROJECT_DIR$/src/app.wpy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/common/wepy-checkbox.wpy" afterPath="$PROJECT_DIR$/src/components/common/wepy-checkbox.wpy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/common/wepy-textarea.wpy" afterPath="$PROJECT_DIR$/src/components/common/wepy-textarea.wpy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/baseinfo.wpy" afterPath="$PROJECT_DIR$/src/pages/baseinfo.wpy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pages/skinInfo.wpy" afterPath="$PROJECT_DIR$/src/pages/skinInfo.wpy" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -28,13 +22,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="baseinfo.wpy" pinned="false" current-in-tab="false">
+      <file leaf-file-name="baseinfo.wpy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/baseinfo.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+            <state relative-caret-position="172">
+              <caret line="64" column="11" lean-forward="true" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="11" />
               <folding>
-                <element signature="e#1489#1512#0" expanded="true" />
+                <element signature="e#1733#1756#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,18 +77,8 @@
       <file leaf-file-name="skinInfo.wpy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/skinInfo.wpy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="83" column="63" lean-forward="true" selection-start-line="83" selection-start-column="63" selection-end-line="83" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="74" column="38" lean-forward="false" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -178,12 +162,12 @@
         <option value="$PROJECT_DIR$/doc/api/buy/get.md" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/app.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/baseinfo.wpy" />
         <option value="$PROJECT_DIR$/src/pages/selfIntroduction.wpy" />
         <option value="$PROJECT_DIR$/src/components/common/wepy-checkbox.wpy" />
         <option value="$PROJECT_DIR$/src/components/common/wepy-textarea.wpy" />
-        <option value="$PROJECT_DIR$/src/pages/skinInfo.wpy" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/pages/skinInfo.wpy" />
+        <option value="$PROJECT_DIR$/src/pages/baseinfo.wpy" />
       </list>
     </option>
   </component>
@@ -462,7 +446,7 @@
       <workItem from="1528529978964" duration="59192000" />
       <workItem from="1531733224577" duration="11261000" />
       <workItem from="1533564071888" duration="4015000" />
-      <workItem from="1533735367550" duration="4006000" />
+      <workItem from="1533735367550" duration="4484000" />
     </task>
     <task id="LOCAL-00001" summary="删除package-lock.json">
       <created>1529076152963</created>
@@ -478,11 +462,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531904905892</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="皮肤问题填写表单">
+      <created>1533739560694</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1533739560694</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92775000" />
+    <option name="totallyTimeSpent" value="93253000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1389" height="877" extended-state="6" />
@@ -518,7 +509,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="删除package-lock.json" />
     <MESSAGE value="api文档" />
-    <option name="LAST_COMMIT_MESSAGE" value="api文档" />
+    <MESSAGE value="皮肤问题填写表单" />
+    <option name="LAST_COMMIT_MESSAGE" value="皮肤问题填写表单" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -530,7 +522,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1489#1512#0" expanded="true" />
+            <element signature="e#1733#1756#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -844,16 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/baseinfo.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding>
-            <element signature="e#1489#1512#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.wpy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -886,14 +868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/selfIntroduction.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/packages/@minui/wxc-button/dist/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-980">
@@ -918,19 +892,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/skinInfo.wpy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="83" column="63" lean-forward="true" selection-start-line="83" selection-start-column="63" selection-end-line="83" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/selfIntroduction.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/skinInfo.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="74" column="38" lean-forward="false" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/baseinfo.wpy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="64" column="11" lean-forward="true" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="11" />
+          <folding>
+            <element signature="e#1733#1756#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
