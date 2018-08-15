@@ -52,7 +52,7 @@
     <wxc-input type="number" title="体重" placeholder="用药量参考"></wxc-input>
     <view class="live-place">
       <view class="live-place-combine">
-        <view class="live-place-label">所在地区：</view>
+        <view class="live-place-label">长期居住城市：</view>
         <view class="live-place-text" @tap="openAddressPicker">{{province ? province.name : '省'}} - {{city ? city.name : '市' }}</view>
         <citySelect @areaArray.user="areaPickerArray" :showArea.sync="showArea"></citySelect>
       </view>
