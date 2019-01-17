@@ -1,0 +1,171 @@
+/**
+* Created by lsy on 2019/1/15.
+*/
+<style lang="less">
+  .tabs{
+    width: 100%;
+    font-size: 28rpx;
+    color: #666;
+  }
+  .tab-title{
+    text-align: center;
+    border-bottom: 2rpx solid #eee;
+    overflow: auto;
+  }
+  .tab-title .title{
+    float: left;
+    width: 50%;
+    height: 50rpx;
+    font-size: 28rpx;
+    line-height: 50rpx;
+    color: #666;
+  }
+  .tab-title .active{
+    border: none;
+    background-color: #32b1af;
+    color: #fff;
+  }
+  .tab-content{
+    padding: 10rpx 20rpx;
+  }
+  .tab-content .list .item{
+    margin-bottom: 40rpx;
+  }
+  .tab-content .list .item .time{
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20rpx;
+  }
+  .tab-content .list .item .skin-solution, .tab-content .list .item .medical-solution{
+    margin-bottom: 10rpx;
+  }
+  .tab-content .list .images{
+    overflow: auto;
+  }
+  .tab-content .list .images image{
+    float: left;
+    width: 25%;
+    height: 200rpx;
+    border: 2rpx solid #eee;
+  }
+</style>
+
+<template>
+  <view class="container">
+    <view class="tabs">
+      <view class="tab-title">
+        <view class="title {{tab == 0 ? 'active' : ''}}" bindtap="onTabClick(0)">皮肤档案</view>
+        <view class="title {{tab == 1 ? 'active' : ''}}" bindtap="onTabClick(1)">基本信息</view>
+      </view>
+      <view class="tab-content">
+        <view wx:if="{{tab == 0}}" class="content0 content">
+          <view class="list">
+            <view wx:for="{{skinList}}" class="item">
+              <view class="time">{{item.createdTime}}</view>
+              <view class="skin-solution">护肤方案：{{item.skinSolution}}</view>
+              <view class="medical-solution">用药方案：{{item.medicalSolution}}</view>
+              <view class="images">
+                <image wx:for="{{item.imgs}}" wx:for-item="img" src="{{img.url}}" background-size="cover"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view wx:if="{{tab == 1}}" class="content1 content">
+          <view class="name baseinfo">{{name}}</view>
+          <view class="baseinfo">管理周期：{{circleTime[0]}}-{{circleTime[1]}}</view>
+          <view class="baseinfo">性别：{{sex}}</view>
+          <view class="baseinfo">年龄：{{age}}</view>
+          <view class="baseinfo">身高/体重：{{high}}cm/{{weight}}kg</view>
+          <view class="baseinfo">城市：{{region}}</view>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+</template>
+
+<script>
+	import wepy from 'wepy'
+  import tip from '../utils/tip'
+  import api from '../api/api'
+
+	export default class skinDoc extends wepy.page {
+    config = {
+
+    }
+
+		data = {
+			name: "",
+      circleTime: [],
+      sex: '',
+      age: '',
+      high: '',
+      weight: '',
+      region: '',
+      skinList: [
+        {
+        	createdTime: '',
+          skinSolution: "",
+          medicalSolution: "",
+          imgs: []
+        },
+        {
+          createdTime: '',
+          skinSolution: "",
+          medicalSolution: "",
+          imgs: []
+        }
+      ],
+      tab: 0
+    }
+
+		methods = {
+      onTabClick(index) {
+      	this.tab = index
+      },
+
+    }
+
+    getCustomerBase() {
+      let that = this
+      const json = api.getCustomerBase().then((res) => {
+        if(res.data.code == 0){
+          let r = res.data.data
+          that.name = r.name
+          that.circleTime[0] = tip.timeTostring(r.createdTime[0], 'y-m-d')
+          that.circleTime[1] = tip.timeTostring(r.createdTime[1], 'y-m-d')
+          let age = new Date().getTime()-r.age
+          r.age = Math.floor(age/(3600*24*365*1000))
+          that.sex = r.sex == 1 ? '男' : '女'
+        }
+
+        if(res.data.code == 1) {
+          wx.redirectTo({
+            url: 'login'
+          })
+        }
+      })
+    }
+
+    getSkinDocHisList() {
+      let that = this
+      const json = api.getSkinDocHisList().then((res) => {
+        if(res.data.code == 0){
+          let r = res.data.data
+          for (var index in r) {
+            r[index].createdTime = tip.timeTostring(r[index].createdTime, 'y-m-d')
+          }
+
+          that.skinList = r
+        }
+      })
+    }
+
+    async onLoad () {
+      await this.getCustomerBase()
+      await this.getSkinDocHisList()
+    }
+	}
+
+</script>

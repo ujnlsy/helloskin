@@ -1,0 +1,67 @@
+/**
+* Created by lsy on 2019/1/15.
+*/
+<style lang="less">
+  .logo {
+    font-size: 40rpx;
+    margin-bottom: 10rpx;
+    color: #32b1af;
+  }
+  .title {
+    font-size: 25rpx;
+    margin-bottom: 30rpx;
+    color: #666;
+  }
+  .login-btn {
+    margin-top: 20rpx;
+    text-align: center;
+  }
+</style>
+
+<template>
+  <view class="container">
+    <view class="logo">Hello Skin</view>
+    <view class="title">皮肤管理工作室</view>
+    <view class="login">
+      <wxc-input type="text" title="账号"  value="{{name}}"></wxc-input>
+      <wxc-input password="{{true}}" title="密码"  value="{{password}}"></wxc-input>
+      <view class="login-btn">
+        <wxc-button @tap="login" type="info">登录</wxc-button>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+	import wepy from 'wepy'
+  import api from '../api/api'
+
+
+	export default class login extends wepy.page {
+		data = {
+			name: '',  //用户名
+      password: ''  //密码
+    }
+
+    config = {
+      navigationBarTitleText: '登录',
+      usingComponents: {
+        'wxc-input': '../packages/@minui/wxc-input/dist/index',
+        'wxc-button': '../packages/@minui/wxc-button/dist/index'
+      }
+    }
+
+		methods = {
+			login(){
+				let that = this
+        const json = api.Login().then((res) => {
+					if(res.data.code == 0){
+						let token = res.data.data.token
+            wx.setStorageSync('userToken', token)
+          }
+        })
+      }
+    }
+	}
+
+</script>

@@ -28,11 +28,16 @@ import tip from './tip'
 
 const wxRequest = function (params = {}, url) {
   let data = params.query || {};
+  let userToken = wx.getStorageSync('userToken')
   const promise = new Promise((resolve,reject)=>{
     wx.request({
       url:url,
       data:data,
       mehtod:params.method || 'GET',
+      header: {
+        'content-type': 'application/json',
+        'userToken': "" + userToken
+      },
       success:function(res){
         resolve(res)
       },

@@ -17,6 +17,8 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
+    	'pages/skinDoc',
+    	'pages/login',
     	'pages/myConsult',
     	'pages/selfIntroduction',
       'pages/baseinfo',

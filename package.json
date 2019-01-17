@@ -20,6 +20,7 @@
     "@minui/wxc-button": "^1.0.2",
     "@minui/wxc-icon": "^1.0.9",
     "@minui/wxc-input": "^1.0.1",
+    "@minui/wxc-tab": "^1.0.8",
     "wepy": "^1.6.0",
     "wepy-async-function": "^1.4.4",
     "wepy-com-toast": "^1.0.2"
